@@ -9,7 +9,7 @@ from app.routes.categories_routes import router as categories_router
 from app.routes.attachments_routes import router as attachments_router
 from app.routes.departments_routes import router as departments_router
 from app.routes.messages_routes import router as message_router
-from app.routes.auth import router as auth_router
+from app.routes.auth import routes as auth_router
 from fastapi import FastAPI, Request
 from fastapi.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
@@ -45,6 +45,8 @@ origins = [
     "https://localhost:3000",
     "http://localhost:3000",
     "http://localhost:5173",
+    "http://localhost:4200",
+    "http://10.0.0.15:4200",
     "https://localhost:3000",
 ]
 
