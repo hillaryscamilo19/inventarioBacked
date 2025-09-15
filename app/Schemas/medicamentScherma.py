@@ -10,7 +10,6 @@ class MedicamentoUpdate(BaseModel):
 
 
 class MedicantoEntrega(BaseModel):
-    employee_id: str
     Area_id: str
     Medicamento_id: str
     Cantidad: int

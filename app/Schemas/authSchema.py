@@ -1,34 +1,37 @@
-from pydantic import BaseModel, Field
-from django.contrib.auth.models import AbstractUser
+from xmlrpc.client import boolean
+from pydantic import BaseModel, Field, EmailStr
+from typing import Optional
 
-class User(BaseModel):
-    firt_name: str
+# Schema para crear un usuario
+class UserCreate(BaseModel):
+    first_name: str
     last_name: str
-    area:str
-    position: str
-    employee_id: str
-    phone: str
-    is_active:str
-    email: str
-    sap_last_sync: str
+    area: str
+    is_active: bool
+    email: EmailStr
+    sap_last_sync: Optional[str] = None
 
-class Config:
-    arbitrary_type_allwed = True
-    orm_mode: True
+    class Config:
+        arbitrary_types_allowed = True
+        orm_mode = True
 
+# Schema para login
 class UserLogin(BaseModel):
     username: str
     password: str
 
+# Schema para respuesta de usuario
 class UserResponse(BaseModel):
     username: str = Field(..., title="username")
-    class config: 
-        orm_mode: True
 
-class UserRole(AbstractUser):
-    ROLE_CHOICES = [
-        ('admin', 'Administrador'),
-        ('delivery', 'Encargado de entrega'),
-        ('audit','Personal Auditoria'),
-        ('Employee','Empleado')
-    ]
+    class Config:
+        orm_mode = True
+
+# Roles de usuario (puedes usar Enum)
+from enum import Enum
+
+class UserRoleEnum(str, Enum):
+    admin = "Administrador"
+    delivery = "Encargado de entrega"
+    audit = "Personal Auditoria"
+    employee = "Empleado"
