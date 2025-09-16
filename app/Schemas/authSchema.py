@@ -1,3 +1,4 @@
+import datetime
 from xmlrpc.client import boolean
 from pydantic import BaseModel, Field, EmailStr
 from typing import Optional
@@ -9,7 +10,7 @@ class UserCreate(BaseModel):
     area: str
     is_active: bool
     email: EmailStr
-    sap_last_sync: Optional[str] = None
+    sap_last_sync: Optional[datetime] = None # type: ignore
 
     class Config:
         arbitrary_types_allowed = True

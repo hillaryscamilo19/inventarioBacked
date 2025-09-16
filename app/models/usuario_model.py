@@ -18,8 +18,6 @@ class User(Base):
     created_at = Column("createdat", DateTime(timezone=True), server_default=func.now(), nullable=True)
     updated_at = Column("updatedat", DateTime(timezone=True), server_default=func.now(), onupdate=func.now(), nullable=False)
 
-
-
 def usuario_helper(usuario) -> dict:
     return {
         "id": usuario.id,

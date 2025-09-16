@@ -17,7 +17,6 @@ async def get_medicamento(db: AsyncSession = Depends(get_db), current_user: User
     return medicamento
 
 #Rutas Para Crear un Medicamento
-
 @router.post("")
 async def create_medicamento(data: MedicamentoCreate, db: AsyncSession = Depends(get_db), current_user: User = Depends(get_current_user)):
     new_Medicamento = Medicamento(name=data.name)
